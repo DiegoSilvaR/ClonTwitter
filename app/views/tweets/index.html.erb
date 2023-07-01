@@ -1,24 +1,45 @@
-<p style="color: green"><%= notice %></p>
+<style>
+  .tweet-card {
+    min-height: 200px;
+  }
+</style>
 
-<h1>Tweets</h1>
+<div class="container">
+  <div class="card card-container">
+    <div class="card-header">
+      <h1 class="card-title">Mini Tweets</h1>
+    </div>
+    <div class="card-body">
+      <%= form_with url: tweets_path, method: :get, class: "form-inline mb-3" do |form| %>
+        <div class="input-group">
+          <%= form.text_field :query_text, placeholder: "Buscar tweets...", value: params[:query_text], class: "form-control" %>
+          <div class="input-group-append">
+            <%= form.submit "Buscar", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
 
-<%= form_with url: tweets_path, method: :get do |form| %>
-  <%= form.text_field :query_text, placeholder: t('Query text'), value: params[:query_text] %>
-  <%= form.submit "Search" %>
-<% end %>
+      <div id="tweets" class="row">
+        <% @tweets.each do |tweet| %>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card tweet-card">
+              <div class="card-body">
+                <%= render tweet %>
+              </div>
+              <div class="card-footer">
+                <%= link_to "Ver tweet", tweet, class: "btn btn-secondary", data: { toggle: "modal", target: "#tweetModal" } %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="pagination justify-content-center">
+        <%= will_paginate @tweets, class: "pagination" %>
+      </div>
+    </div>
+  </div>
 
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
-  <% end %>
+  <%= link_to "Nuevo tweet", new_tweet_path, class: "btn btn-primary mt-3" %>
 </div>
-<div class="pagination">
-  <%= will_paginate @tweets %>
-</div>
-
-<%= link_to "New tweet", new_tweet_path %>
-
-

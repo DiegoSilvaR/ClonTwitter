@@ -9,7 +9,7 @@ class TweetsController < ApplicationController
       @tweets = @tweets.search_full_text(params[:query_text])
     end
 
-    @tweets = @tweets.paginate(page: params[:page], per_page: 5)
+    @tweets = @tweets.paginate(page: params[:page], per_page: 4)
   end
 
   # GET /tweets/1 or /tweets/1.json
