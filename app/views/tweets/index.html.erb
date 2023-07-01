@@ -1,7 +1,44 @@
 <style>
+  body {
+    background-color: #272727;
+  }
+  .card-container {
+    background-color: #ffffff;
+    margin-top: 10vh;
+    border-radius: 5px;
+  }
   .tweet-card {
     min-height: 200px;
   }
+  .pagination {
+    display: inline-flex;
+    justify-self: unset;
+  }
+  .pagination a {
+    color: white;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+border: 1px solid
+  }
+
+  .current {
+    background-color: #272727;
+    color: white;
+    padding: 8px 16px;
+    border: 1px solid
+  }
+
+  .pagination .disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    padding: 8px 16px;
+    background-color: #d9d9d9;
+  }
+  .gap{
+    display: none;
+  }
+
 </style>
 
 <div class="container">
@@ -35,11 +72,11 @@
       </div>
     </div>
     <div class="card-footer">
-      <div class="pagination justify-content-center">
-        <%= will_paginate @tweets, class: "pagination" %>
-      </div>
+<div class="pagination justify-content-center text-center d-flex">
+  <%= will_paginate @tweets, class: "pagination bg-primary rounded shadow bg-gradient", inner_window: 1, outer_window: 0, previous_label: "&laquo;", next_label: "&raquo;" %>
+</div>
+
     </div>
   </div>
-
   <%= link_to "Nuevo tweet", new_tweet_path, class: "btn btn-primary mt-3" %>
 </div>
