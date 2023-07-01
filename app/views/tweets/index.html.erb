@@ -15,6 +15,9 @@
     </p>
   <% end %>
 </div>
+<div class="pagination">
+  <%= will_paginate @tweets %>
+</div>
 
 <%= link_to "New tweet", new_tweet_path %>
 
