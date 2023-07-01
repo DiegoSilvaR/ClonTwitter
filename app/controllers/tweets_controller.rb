@@ -3,8 +3,13 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    if params[:search].present?
+      @tweets = Tweet.search_by_description(params[:search]).paginate(page: params[:page], per_page: 4)
+    else
+      @tweets = Tweet.paginate(page: params[:page], per_page: 4)
+    end
   end
+
 
   # GET /tweets/1 or /tweets/1.json
   def show
