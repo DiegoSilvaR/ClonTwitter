@@ -77,4 +77,4 @@ end
 
 gem "pg_search", "~> 2.3"
 
-gem "pagy", "~> 6.0"
+#gem "pagy", "~> 6.0"
