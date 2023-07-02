@@ -1,10 +1,30 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @tweet %>
-
-<div>
-  <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
-  <%= link_to "Back to tweets", tweets_path %>
-
-  <%= button_to "Destroy this tweet", @tweet, method: :delete %>
+<!-- HTML -->
+<div class="d-flex align-items-center justify-content-center vh-100 bg-dark">
+  <div class="card show" id="tweetCard">
+    <div class="card-header bg-primary text-white">
+      <h5 class="card-title text-white text-center">Detalles del Tweet</h5>
+    </div>
+    <div class="card-body text-center">
+      <p style="color: green"><%= notice %></p>
+      <%= render @tweet %>
+      <br>
+      <div class="d-flex justify-content-center mb-3">
+        <%= link_to "Editar", edit_tweet_path(@tweet), class: "btn btn-primary btn-sm input-group-text" %>
+        <%= link_to "Volver", tweets_path, class: "btn btn-secondary btn-sm input-group-text" %>
+      </div>
+      <div>
+        <%= button_to "Eliminar", @tweet, method: :delete, class: "btn btn-danger rounded-pill" %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- JavaScript -->
+<script>
+  $(window).on('load', function () {
+    if (window.location.href.indexOf('/tweets/') > -1) {
+      $('#tweetCard').addClass('show').hide().fadeIn(1000);
+    }
+  });
+</script>
+

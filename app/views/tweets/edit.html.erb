@@ -1,26 +1,34 @@
-<!-- HTML -->
-<div class="modal fade" id="tweetModal" tabindex="-1" aria-labelledby="tweetModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tweetModalLabel">Editing tweet</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= render "form", tweet: @tweet %>
-        <br>
-        <div>
-          <%= link_to "Show this tweet", @tweet %> |
-          <%= link_to "Back to tweets", tweets_path %>
-        </div>
+<div class="d-flex align-items-center justify-content-center vh-100 bg-dark">
+  <div class="card text-white bg-dark show" id="tweetCard">
+    <div class="card-header bg-primary">
+      <h5 class="card-title text-white text-center">Detalles del Tweet</h5>
+    </div>
+    <div class="card-body bg-light text-dark text-center">
+      <p style="color: green"><%= notice %></p>
+      <h1 class="text-center">Editar tweet</h1>
+      <%= render "form", tweet: @tweet %>
+      <br>
+      <div class="d-flex justify-content-center">
+        <%= link_to "Volver a tweets", tweets_path, class: "btn btn-secondary btn-sm" %>
       </div>
     </div>
   </div>
 </div>
 
+<h1 class="text-center">Editing tweet</h1>
+
+<%= render "form", tweet: @tweet %>
+
+<br>
+
+<div>
+  <%= link_to "Mostrar este tweet", @tweet %> |
+  <%= link_to "Volver a tweets", tweets_path %>
+</div>
+
+<!-- JavaScript -->
 <script>
-  // JavaScript code to open the modal on page load
-  document.addEventListener('DOMContentLoaded', function () {
-    $('#tweetModal').modal('show');
+  $(window).on('load', function () {
+    $('#tweetCard').addClass('show').hide().fadeIn(1000);
   });
 </script>
