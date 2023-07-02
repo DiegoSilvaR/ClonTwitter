@@ -1,15 +1,16 @@
 <div class="d-flex align-items-center justify-content-center vh-100 bg-dark">
-  <div class="card text-white bg-dark show" id="tweetCard">
-    <div class="card-header bg-primary">
-      <h5 class="card-title text-white text-center">Detalles del Tweet</h5>
+  <div class="card text-white bg-dark show rounded" id="tweetCard">
+    <div class="card-header bg-primary d-flex justify-content-between">
+      <h5 class="card-title text-white text-center mt-2">Detalles del Tweet</h5>
+      <i class="fab fa-twitter fa-2x m-1" style="color: #ffffff;"></i>
     </div>
-    <div class="card-body bg-light text-dark text-center">
+    <div class="card-body bg-light text-dark text-center rounded-bottom">
       <p style="color: green"><%= notice %></p>
       <h1 class="text-center">Nuevo tweet</h1>
       <%= render "form", tweet: @tweet %>
       <br>
       <div class="d-flex justify-content-center">
-        <%= link_to "Volver a tweets", tweets_path, class: "btn btn-secondary btn-sm" %>
+        <%= link_to "Volver a tweets", tweets_path, class: "btn btn-secondary btn-sm rounded-pill" %>
       </div>
     </div>
   </div>

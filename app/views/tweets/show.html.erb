@@ -1,21 +1,27 @@
 <!-- HTML -->
+<style>
+  .show-card {
+    min-width: 400px;
+  }
+</style>
 <div class="d-flex align-items-center justify-content-center vh-100 bg-dark">
-  <div class="card show" id="tweetCard">
-    <div class="card-header bg-primary text-white">
-      <h5 class="card-title text-white text-center">Detalles del Tweet</h5>
+  <div class="card show shadow-lg show-card" id="tweetCard">
+    <div class="card-header bg-primary text-white d-flex justify-content-between">
+      <h5 class="card-title text-white text-center mt-2">Detalles del Tweet</h5>
+      <i class="fab fa-twitter fa-2x m-1" style="color: #ffffff;"></i>
     </div>
     <div class="card-body text-center">
       <p style="color: green"><%= notice %></p>
       <%= render @tweet %>
       <br>
-      <div class="d-flex justify-content-center mb-3">
-        <%= link_to "Editar", edit_tweet_path(@tweet), class: "btn btn-primary btn-sm input-group-text" %>
-        <%= link_to "Volver", tweets_path, class: "btn btn-secondary btn-sm input-group-text" %>
-      </div>
-      <div>
-        <%= button_to "Eliminar", @tweet, method: :delete, class: "btn btn-danger rounded-pill" %>
+      <div class="d-flex input-group justify-content-center mb-3">
+        <%= link_to "Editar", edit_tweet_path(@tweet), class: "btn btn-primary rounded-end rounded-pill input-group-text" %>
+        <%= link_to "Volver", tweets_path, class: "btn btn-secondary rounded-start rounded-pill input-group-text" %>
       </div>
     </div>
+      <div class="card-footer d-flex justify-content-center bg-secondary">
+        <%= button_to "Eliminar", @tweet, method: :delete, class: "btn btn-sm bg-gradient btn-danger rounded-pill" %>
+      </div>
   </div>
 </div>
 

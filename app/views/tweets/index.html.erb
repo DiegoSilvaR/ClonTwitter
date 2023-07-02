@@ -21,6 +21,8 @@
     background-color: #ffffffcc;
     margin-top: 10vh;
     border-radius: 5px;
+    border-width:3px;
+    border-color:#fff;
   }
   .tweet-card {
     min-height: 340px;
@@ -57,7 +59,8 @@
 }
 </style>
 
-<div class="container">
+<div class="container ">
+<p class="fs-5 mt-5 fixed-top pb-3 fw-bold text-center text-primary"><%= notice %></p>
   <div class="card card-container">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
       <div>
@@ -66,19 +69,19 @@
       </div>
       <i class="fab fa-twitter fa-3x m-2" style="color: #ffffff;"></i>
     </div>
-    <div class="card-body shadow">
-      <%= form_with url: tweets_path, method: :get, class: "form-inline mb-3" do |form| %>
+    <div class="card-body shadow-lg">
+      <%= form_with url: tweets_path, method: :get, class: "form-inline mb-3 " do |form| %>
         <div class="input-group">
-          <%= form.text_field :query_text, placeholder: "Buscar tweets...", value: params[:query_text], class: "form-control rounded-0 rounded-end rounded-pill" %>
+          <%= form.text_field :query_text, placeholder: "Buscar tweets...", value: params[:query_text], class: "shadow-sm form-control rounded-0 rounded-end rounded-pill" %>
           <div class="input-group-append">
-            <%= form.submit "Buscar", class: "btn btn-primary rounded-0 rounded-start rounded-pill" %>
+            <%= form.submit "Buscar", class: "btn btn-primary rounded-0 rounded-start rounded-pill shadow-sm" %>
           </div>
         </div>
       <% end %>
  <div id="tweets" class="row">
       <% @tweets.each do |tweet| %>
         <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card tweet-card">
+          <div class="card tweet-card shadow-sm my-2">
             <div class="card-body">
               <!-- Agregar la etiqueta de imagen aquí -->
               <% if tweet.profile_image.attached? %>
@@ -97,10 +100,12 @@
         </div>
       <% end %>
     </div>
-    <div class="card-footer bg-secondary">
+
+  </div>
+   <div class="card-footer bg-secondary pb-1">
       <div class="pagination justify-content-center text-center d-flex">
         <%= will_paginate @tweets, class: "pagination bg-primary rounded-pill shadow bg-gradient", inner_window: 1, outer_window: 0, previous_label: "&laquo;", next_label: "&raquo;" %>
       </div>
+      <p class="text-center text-light mt-3 mb-2"style="font-size:12px" >Diego Silva -  Introducción a desarrollo de aplicaciones Ruby on Rails</p>
     </div>
-  </div>
 </div>
