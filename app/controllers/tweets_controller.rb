@@ -9,26 +9,49 @@ class TweetsController < ApplicationController
       @tweets = @tweets.search_full_text(params[:query_text])
     end
 
+    @profile_images = [
+      "profile1.png",
+      "profile2.png",
+      "profile3.png",
+      "profile4.png",
+      "profile5.png",
+      "profile6.png",
+      "profile7.png",
+      "profile8.png",
+      "profile9.png",
+      "profile10.png",
+      "profile11.png",
+      "profile12.png"
+    ]
+
     @tweets = @tweets.paginate(page: params[:page], per_page: 4)
   end
 
   # GET /tweets/1 or /tweets/1.json
-  def show
-  end
+  #def show
+    #@profile = Profile.find(params[:id])
+ # end
+# GET /tweets/1 or /tweets/1.json
+def show
+  @tweet = Tweet.find(params[:id])
+end
 
   # GET /tweets/new
   def new
     @tweet = Tweet.new
+    @image_files = Dir.glob("app/assets/images/profile*.png")
   end
 
-  # GET /tweets/1/edit
-  def edit
-  end
+# GET /tweets/1/edit
+def edit
+  @image_files = Dir.glob("app/assets/images/profile*.png")
+end
+
 
   # POST /tweets or /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
-
+    @tweet.profile_image.attach(params[:tweet][:profile_image])
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to tweet_url(@tweet), notice: "Tweet creado correctamente" }
@@ -44,7 +67,7 @@ class TweetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to tweet_url(@tweet), notice: "El Tweet se actualizo correctamente" }
+        format.html { redirect_to tweet_url(@tweet), notice: "El Tweet se actualizó correctamente" }
         format.json { render :show, status: :ok, location: @tweet }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -71,6 +94,6 @@ class TweetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tweet_params
-      params.require(:tweet).permit(:description, :userName)
+      params.require(:tweet).permit(:description, :userName, :profile_image)
     end
 end

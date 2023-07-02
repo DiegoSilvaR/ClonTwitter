@@ -8,4 +8,6 @@ class Tweet < ApplicationRecord
 
   validates :description, presence: true
   validates :userName, presence: true
+  has_one_attached :profile_image
+
 end

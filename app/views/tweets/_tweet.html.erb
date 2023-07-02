@@ -1,13 +1,12 @@
 <!-- _tweet.html.erb -->
 <div id="<%= dom_id(tweet) %>">
   <p>
+    <strong>Usuario:</strong>
+    <%= tweet.userName %>
+  </p>
+    <p>
     <strong>Descripción:</strong>
     <%= tweet.description %>
-  </p>
-
-  <p>
-    <strong>Nombre de Usuario:</strong>
-    <%= tweet.userName %>
   </p>
 </div>
 
