@@ -7,6 +7,6 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 20.times do
-  Tweet.create(description: Faker::Lorem.sentence, userName: Faker::Internet.username, profile_image: Faker::Internet.profile_image)
-
+  image_path = Rails.root.join('images', Dir.entries('images').sample)
+  Tweet.create(description: Faker::Lorem.sentence, userName: Faker::Internet.username, profile_image: File.new(image_path))
 end
