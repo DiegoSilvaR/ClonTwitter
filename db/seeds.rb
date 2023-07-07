@@ -7,6 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 20.times do
-  image_path = Rails.root.join('images', Dir.entries('images').sample)
-  Tweet.create(description: Faker::Lorem.sentence, userName: Faker::Internet.username, profile_image: File.new(image_path))
+  tweet = Tweet.create(description: Faker::Lorem.sentence, userName: Faker::Internet.username)
+  image_path = Rails.root.join('app', 'assets', 'images', "profile#{rand(1..12)}.png")
+  tweet.profile_image.attach(io: File.open(image_path), filename: "profile#{rand(1..12)}.png")
 end
+
+
