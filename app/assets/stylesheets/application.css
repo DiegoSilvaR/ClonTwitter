@@ -13,4 +13,85 @@
  *= require_tree .
  *= require_self
  */
+ body {
+    background-image: url("<%= asset_path('paper.jpg') %>");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+    .profile-image-container {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff;
+  }
+.glass
+{
+background: rgba(121, 145, 255, 0.33);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11.9px);
+-webkit-backdrop-filter: blur(11.9px);
+border: 1px solid rgba(121, 145, 255, 0.4);
+  }
+  .glass2
+{
 
+background: rgba(230, 13, 255, 0.41);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11.9px);
+-webkit-backdrop-filter: blur(11.9px);
+border: 1px solid rgba(230, 13, 255, 0.4);
+  }
+  .profile-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .card-container {
+
+    margin-top: 5vh;
+    border-radius: 5px;
+    border-width:3px;
+
+  }
+  .tweet-card {
+    min-height: 340px;
+  }
+  .pagination {
+    display: inline-flex;
+    justify-self: unset;
+  }
+  .pagination a {
+    color: white;
+    float: center;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+  .current {
+    background-color: #272727;
+    color: white;
+    padding: 8px 16px;
+
+  }
+
+  .pagination .disabled {
+    pointer-events: none;
+    opacity: 0.3;
+    padding: 8px 16px;
+  }
+  .gap {
+    display: none;
+  }
+  img {
+    vertical-align: middle;
+    width: 100%;
+}

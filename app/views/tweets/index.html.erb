@@ -1,6 +1,9 @@
 <style>
   body {
-    background-color: #272727;
+    background-image: url("<%= asset_path('paper.jpg') %>");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
     .profile-image-container {
     width: 100px;
@@ -10,19 +13,40 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff;
   }
+.glass
+{
+background: rgba(121, 145, 255, 0.33);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11.9px);
+-webkit-backdrop-filter: blur(11.9px);
+border: 1px solid rgba(121, 145, 255, 0.4);
+  }
+  .glass2
+{
 
+background: rgba(230, 13, 255, 0.41);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(11.9px);
+-webkit-backdrop-filter: blur(11.9px);
+border: 1px solid rgba(230, 13, 255, 0.4);
+  }
   .profile-image {
     width: 100%;
     height: auto;
     object-fit: cover;
   }
   .card-container {
-    background-color: #ffffffcc;
+
     margin-top: 5vh;
     border-radius: 5px;
     border-width:3px;
-    border-color:#fff;
+
   }
   .tweet-card {
     min-height: 340px;
@@ -57,32 +81,123 @@
     vertical-align: middle;
     width: 100%;
 }
+.glow-on-hover {
+
+    border: none;
+    outline: none;
+    color: #fff;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 20px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #00ff91, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff006f);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 20px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.pulse:hover,
+.pulse:focus {
+  -webkit-animation: pulse 1s;
+          animation: pulse 1s;
+  box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--hover);
+  }
+}
+
+.pulse {
+  --color: #ef6eae;
+  --hover: #d51869;
+}
+
+button {
+  color: var(--color);
+  transition: 0.25s;
+}
+button:hover, button:focus {
+  border-color: var(--hover);
+  color: #fff;
+}
 </style>
 
 <div class="container ">
 <p class="fs-5 mt-5 fixed-top pb-3 fw-bold text-center text-primary"><%= notice %></p>
-  <div class="card card-container">
+  <div class="card card-container glass">
     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
       <div>
         <h1 class="card-title">Mini Tweets</h1>
-        <%= link_to "Nuevo tweet", new_tweet_path, class: "btn btn-light rounded-pill fw-bold mt-3" %>
+        <%= link_to "Nuevo tweet", new_tweet_path, class: "glow-on-hover btn btn-dark border border-2 shadow rounded-pill fw-bold mt-3" %>
       </div>
       <i class="fab fa-twitter fa-3x m-2" style="color: #ffffff;"></i>
     </div>
-    <div class="card-body shadow-lg">
+    <div class="card-body shadow-lg ">
       <%= form_with url: tweets_path, method: :get, class: "form-inline mb-3 " do |form| %>
         <div class="input-group">
           <%= form.text_field :query_text, placeholder: "Buscar tweets...", value: params[:query_text], class: "shadow-sm form-control rounded-0 rounded-end rounded-pill" %>
           <div class="input-group-append">
-            <%= form.submit "Buscar", class: "btn btn-primary rounded-0 rounded-start rounded-pill shadow-sm" %>
+            <%= form.submit "Buscar", class: " btn btn-primary rounded-0 rounded-start rounded-pill shadow-sm" %>
           </div>
         </div>
       <% end %>
  <div id="tweets" class="row">
       <% @tweets.each do |tweet| %>
         <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card tweet-card shadow-sm my-2">
-            <div class="card-body">
+          <div class="card tweet-card glass2 shadow my-2">
+            <div class="card-body ">
               <!-- Agregar la etiqueta de imagen aquí -->
               <% if tweet.profile_image.attached? %>
               <div class="profile-image-container">
@@ -94,7 +209,7 @@
                </div>
             </div>
             <div class="card-footer">
-              <%= link_to "Ver tweet", tweet, class: "btn btn-secondary rounded-pill", data: { toggle: "modal", target: "#tweetModal" } %>
+              <%= link_to "Ver tweet", tweet, class: "glow-on-hover btn btn-dark border border-2 rounded-pill shadow", data: { toggle: "modal", target: "#tweetModal" } %>
             </div>
           </div>
         </div>
